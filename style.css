@@ -1,0 +1,209 @@
+:root {
+  --square-size: 100px;
+}
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('./assets/font/PressStart2P-Regular.ttf') format('truetype');
+}
+* {
+  box-sizing: border-box;
+  /* border: 1px solid #ff0000; */
+}
+
+body {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  font-family: 'Press Start 2P';
+  color: #ffffff;
+  height: 100%;
+  padding: 0;
+  margin: 8px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    margin: 0 auto;
+    border-top: 10px outset #ccc;
+    border-right: 5px outset #eee;
+    border-bottom: 10px inset #ccc;
+    border-left: 5px inset #eee;
+    background-color: #444;
+
+    @media only screen and (max-width: 480px) {
+      & {
+        width: 100%;
+        padding: 2rem 1rem;
+      }
+    }
+
+    .title-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 1rem;
+
+      h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin: 0;
+        color: #fff;
+      }
+
+      .level {
+        padding-bottom: 1rem;
+      }
+    }
+
+    .life-container {
+      display: flex;
+      column-gap: 0.3rem;
+      visibility: hidden;
+      height: 34px;
+    }
+
+    .square-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 1rem;
+      margin: 1rem 0;
+
+      .square-row {
+        display: flex;
+        gap: 1rem;
+
+        .flip-square {
+          perspective: 1000px;
+          width: var(--square-size);
+          height: var(--square-size);
+          background-color: transparent;
+
+          .flip-square-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            .rotate-square & {
+              transform: rotateX(180deg);
+            }
+
+            .flip-square-front,
+            .square {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              border-radius: 7px;
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+              cursor: pointer;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            }
+
+            .flip-square-front {
+              background-color: #222;
+              transition: background-color 0.3s ease;
+            }
+
+            .front-wrong {
+              background-color: #666;
+            }
+
+            .square {
+              background-color: #ffffff;
+              transform: rotateX(180deg);
+              transition: background-color 0.3s ease;
+            }
+
+            .active-sequence {
+              background-color: #f0f8ff;
+            }
+
+            .wrong-sequence {
+              background-color: #fd4444;
+            }
+          }
+        }
+      }
+    }
+    .btn-container {
+      display: flex;
+      width: 332px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0.5rem;
+
+      #btn-action {
+        font-family: 'Press Start 2P';
+        text-align: center;
+        display: inline-block;
+        margin: 5px;
+        font-weight: bold;
+        padding: 10px;
+        background-color: #d3d3d3;
+        text-shadow: -1px -1px black, 1px 1px white;
+        color: #aaa;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -o-border-radius: 7px;
+        border-radius: 7px;
+        box-shadow: 0 0.3em #808080;
+        cursor: pointer;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: #444;
+        letter-spacing: 2px;
+
+        &:hover {
+          background-color: #bbb;
+          box-shadow: 0 0.3em #d2d2d2;
+        }
+
+        &:active {
+          box-shadow: none;
+          position: relative;
+          top: 0.2em;
+        }
+      }
+
+      .try,
+      .best {
+        font-size: 0.7rem;
+        width: 30%;
+        text-align: start;
+      }
+      .best {
+        text-align: center;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: start;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    width: 100%;
+    @media only screen and (max-width: 480px) {
+      & {
+        justify-content: center;
+        padding-top: 1.2rem;
+      }
+    }
+
+    svg {
+      transition: fill 0.3s ease;
+      &:hover {
+        fill: #fff;
+      }
+    }
+  }
+}
