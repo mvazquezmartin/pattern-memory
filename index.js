@@ -9,6 +9,16 @@ const $square_container = document.querySelector('.square-container');
 const $square_row = document.querySelectorAll('.square-row');
 const $flip_square = document.querySelector('.flip-square');
 
+const squareSizeStr = getComputedStyle(
+  document.documentElement
+).getPropertyValue('--square-size');
+
+const squareSizeNum = parseInt(squareSizeStr);
+
+const updateDOM = {
+  squaresRotate: () => document.querySelectorAll('.flip-square'),
+};
+
 const context = new AudioContext();
 const pattern = [];
 const inputPattern = [];
@@ -16,7 +26,7 @@ const ATTEMPS = 3;
 const MAX_ROW = 6;
 let attemps = ATTEMPS;
 let index_count = 0;
-let total_pattern_square = 3;
+let total_pattern_square = 2;
 let try_count = 0;
 let best_count = 0;
 let current_oscillator = null;
@@ -48,6 +58,15 @@ function pushPattern() {
 }
 
 function generatePatttern() {
+  if (total_pattern_square % 3 === 0) {
+    const resizeSquare = squareSizeNum - 20;
+    document.documentElement.style.setProperty(
+      '--square-size',
+      `${resizeSquare}px`
+    );
+
+    createNewArrowAndBlock();
+  }
   const $squaresRotate_update = document.querySelectorAll('.flip-square');
   for (let i = 1; i <= total_pattern_square; i++) {
     pushPattern();
@@ -63,7 +82,7 @@ function generatePatttern() {
       $squaresRotate_update.forEach((square) => {
         square.classList.remove('rotate-square');
       });
-    }, 1200);
+    }, 1000);
   }
 }
 
@@ -118,7 +137,7 @@ function clickListener() {
           attemps--;
           if (attemps === 0) {
             console.log('lose');
-            return
+            return;
           }
 
           pattern.length = 0;
