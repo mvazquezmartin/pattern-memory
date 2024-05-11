@@ -210,9 +210,3 @@ $btnAction.addEventListener('click', () => {
   init();
   // $btnAction.style.visibility = 'hidden';
 });
-
-// document.addEventListener('click', function(e) {
-//   var clickElement = e.target;  // obtén el elemento DOM clicado
-//   var elementClassName = e.target.className;  // obtén la clase del elemento clicado
-//   console.log(e);
-// });
