@@ -14,7 +14,7 @@ const squareSizeStr = getComputedStyle(
 ).getPropertyValue('--square-size');
 
 const squareSizeNum = parseInt(squareSizeStr);
-
+// test
 const updateDOM = {
   squaresRotate: () => document.querySelectorAll('.flip-square'),
 };
