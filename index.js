@@ -184,6 +184,7 @@ function restHeart() {
   }
 }
 
+
 function createNewArrowAndBlock() {
   $square_row.forEach((row) => {
     const newSquare = $flip_square.cloneNode(true);
