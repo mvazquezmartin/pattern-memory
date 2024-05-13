@@ -86,6 +86,7 @@ function generatePatttern() {
   }
 }
 
+
 function checkPattern(input) {
   if (pattern.includes(input)) {
     inputPattern.push(input);
